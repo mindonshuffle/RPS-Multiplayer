@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Rock Paper Scissors</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+
+</head>
+
+<!-- Begin HTML Body -->
+
+<body>
+
+	<div class="container">
+
+		<!-- Begin "Button Bar" Layout -->	
+	
+		<div class="row">
+
+			<div class = "col-md-12">
+
+				<!-- <div id = "join-panel" class = "panel panel-default">
+					<form>
+						<input id="name-input" type="text">
+						<input id="name-submit" type="submit">
+					</form>
+				</div> -->
+
+				<div id = "join-game" class = "panel panel-default">
+					<button id="join-button">Join Game</button>
+				</div>
+
+				<div id = "select-panel" class = "panel panel-default">
+
+					<div id = "select-rock" class="rps-selector" data-name="rock">
+						<h1>ROCK</h1>
+					</div>
+					
+					<div id = "select-paper" class="rps-selector" data-name="paper">
+						<h1>PAPER</h1>
+					</div>
+
+					<div id = "select-scissors" class="rps-selector" data-name="scissors">
+						<h1>SCISSORS</h1>
+					</div>
+
+				</div>
+
+				<div id = "results-panel" class = "panel panel-default hidden">
+						
+					<div id = "game-results">
+						WIN / LOSE / TIE
+					</div>
+
+				</div>
+
+				<div id = "footer-panel" class = "panel panel-default">
+				
+				<span class="footer-text">Wins: </span>
+				<span id="wins-counter"> ### </span>
+
+				<span class="footer-text">Losses: </span>
+				<span id="losses-counter"> ### </span>
+
+				<button id="new-game-button">New Game</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="assets/javascript/script.js"></script>
+
+</body>
+
+</html>
