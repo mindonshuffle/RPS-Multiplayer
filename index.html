@@ -31,34 +31,52 @@
 
 			<div class = "col-md-12">
 
-				<!-- <div id = "join-panel" class = "panel panel-default">
+				<div id = "join-panel" class = "panel panel-default">
 					<form>
-						<input id="name-input" type="text">
+						<input id="name-input" type="text" placeholder="Enter your Name">
 						<input id="name-submit" type="submit">
 					</form>
-				</div> -->
-
-				<div id = "join-game" class = "panel panel-default">
-					<button id="join-button">Join Game</button>
 				</div>
 
-				<div id = "select-panel" class = "panel panel-default">
+			</div>
 
-					<div id = "select-rock" class="rps-selector" data-name="rock">
-						<h1>ROCK</h1>
-					</div>
+		</div>
+
+		<div class="row">
+
+			<div class = "col-md-4">
+
+				<div id = "player-one-panel" class = "panel panel-default">
+
+					<h2 id = "player-one-name">Player One</h2>
+
+					<button id = "select-rock" class="btn btn-default rps-selector" data-name="rock">
+						ROCK
+					</button>
+
+					<br>
 					
-					<div id = "select-paper" class="rps-selector" data-name="paper">
-						<h1>PAPER</h1>
-					</div>
+					<button id = "select-paper" class="btn btn-default rps-selector" data-name="paper">
+						PAPER
+					</button>
 
-					<div id = "select-scissors" class="rps-selector" data-name="scissors">
-						<h1>SCISSORS</h1>
-					</div>
+					<br>
+
+					<button id = "select-scissors" class="btn btn-default rps-selector" data-name="scissors">
+						SCISSORS
+					</button>
+
+					<h2 id = "player-one-wins">Wins: 0</h2>
+
+					<h2 id = "player-one-losses">Losses: 0</h2>
 
 				</div>
 
-				<div id = "results-panel" class = "panel panel-default hidden">
+			</div>
+
+			<div class = "col-md-4">
+
+				<div id = "results-panel" class = "panel panel-default">
 						
 					<div id = "game-results">
 						WIN / LOSE / TIE
@@ -66,7 +84,57 @@
 
 				</div>
 
-				<div id = "footer-panel" class = "panel panel-default">
+			</div>
+
+			<div class = "col-md-4">
+
+				<div id = "player-two-panel" class = "panel panel-default">
+
+					<h2 id = "player-two-name">Player Two</h2>
+
+					<button id = "select-rock" class="btn btn-default rps-selector" data-name="rock">
+						ROCK
+					</button>
+
+					<br>
+					
+					<button id = "select-paper" class="btn btn-default rps-selector" data-name="paper">
+						PAPER
+					</button>
+
+					<br>
+
+					<button id = "select-scissors" class="btn btn-default rps-selector" data-name="scissors">
+						SCISSORS
+					</button>
+
+					<h2 id = "player-two-wins">Wins: 0</h2>
+
+					<h2 id = "player-two-losses">Losses: 0</h2>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+
+				<div class = "panel panel-default">
+					<form>
+						<input id = "chat-input" type="text">
+						<input id = "chat-submit" type="submit">
+					</form>
+
+					<div id = "chat-box">
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- <div id = "footer-panel" class = "panel panel-default">
 				
 				<span class="footer-text">Wins: </span>
 				<span id="wins-counter"> ### </span>
@@ -80,7 +148,7 @@
 
 			</div>
 
-		</div>
+		</div> -->
 
 	</div>
 
