@@ -435,12 +435,12 @@ database.ref().on("child_removed", function(snapshot) {
 	console.log( snapshot.val().player);
 
 	if (snapshot.val().player === 1){
-		$('#player-one-name').text('Player One')
+		$('#player-one-name').text('Waiting...')
 	}
 
 
 	if (snapshot.val().player === 2){
-		$('#player-two-name').text('Player Two')
+		$('#player-two-name').text('Waiting...')
 	}
 
 	database.ref('game-round').set(0);
