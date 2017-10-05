@@ -41,15 +41,48 @@ function drawScreen(){
 	//draw rpsSelect screen
 	case 'rpsSelect':
 
-	$('#join-panel').hide();
+		$('#join-panel').hide();
 
-		//create, append RPS buttons
+		if(playerNumber === 1){
+
+			$(".p1-button").css("opacity", 1);
+			$(".p1-button").removeClass("btn-selected");
+			$(".p2-button").css("opacity", .2);
+			$(".p2-button").removeClass("btn-selected");
+		}
+
+		if(playerNumber === 2){
+
+			$(".p2-button").css("opacity", 1);
+			$(".p2-button").removeClass("btn-selected");
+			$(".p1-button").css("opacity", .2);
+			$(".p1-button").removeClass("btn-selected");
+		}
 
 		break;
 
 
 	//draw results screen
 	case 'results':
+
+		database.ref().once("value", function(snapshot){
+
+			$('#game-results').text(snapshot.val().result)
+
+			// if (playerNumber = 1){
+
+			// 	var opponentGuess = snapshot.val().playerDbOne.guess;
+			// 	console.log('logic');
+
+			// }
+
+		});
+
+		timerInterval = setTimeout(function(){
+
+			$('#game-results').text('');
+
+		}, 3000 );
 
 
 
@@ -60,6 +93,9 @@ function drawScreen(){
 		// clear panel
 
 		// set gameState to rpsSelect, drawScreen
+
+		// gameState = "rpsSelect";
+
 
 		database.ref('game-round').set(1);
 
@@ -95,8 +131,6 @@ function checkIfGuessed(){
 			console.log('EveryBody Guessed')
 			database.ref('game-round').set(2);
 		}
-
-		
 
 	});
 
@@ -215,6 +249,11 @@ $(document).on('click', '#name-submit', function(event){
 			$('#player-one-name').addClass('my-name');
 
 			playerNumber = 1;
+
+			//hide p2-button and remove rps-selector
+			$(".p2-button").css("opacity", '.2');
+			$(".p2-button").removeClass("rps-selector");
+
 			
 			checkIfReady();
 			drawScreen();
@@ -237,6 +276,12 @@ $(document).on('click', '#name-submit', function(event){
 			$('#player-two-name').addClass('my-name');
 
 			playerNumber = 2;
+
+
+			//hide p1-button and remove rps-selector
+			$(".p1-button").css("opacity", '.2');
+			$(".p1-button").removeClass("rps-selector");
+
 
 			checkIfReady();
 			drawScreen();
@@ -263,11 +308,19 @@ $(document).on('click', '.rps-selector', function(event){
 
 	if ( playerNumber === 1){
 
+		$(".p1-button").css("opacity", '.2');
+		$(this).addClass('btn-selected');
+		$(this).css('opacity', '1');
+
 		database.ref('playerDbOne').update({guess: $(this).attr('data-name') })
 
 	}
 
 	else if ( playerNumber === 2){
+
+		$(".p2-button").css("opacity", '.2');
+		$(this).addClass('btn-selected');
+		$(this).css('opacity', '1');
 
 		database.ref('playerDbTwo').update({guess: $(this).attr('data-name') })
 
@@ -358,6 +411,7 @@ database.ref('game-round').on("value", function(snapshot){
 
 	else if (snapshot.val() === 3 ){
 
+		console.log('results screen:')
 		gameState = 'results';
 		drawScreen();
 	}
