@@ -138,21 +138,6 @@ function drawScreen(){
 
 		}, 3000 );
 
-
-
-		// display Win / Lose / Tie
-
-		// set three second timer, then
-
-		// clear panel
-
-		// set gameState to rpsSelect, drawScreen
-
-		// gameState = "rpsSelect";
-
-
-		
-
 	}
 
 
@@ -252,18 +237,10 @@ function compareGuesses(){
 }
 
 
-/* --- --- --- MAIN LOGIC --- --- --- */
-
-
-//on page load
-
-//drawScreen
+/* --- --- --- STARTUP LOGIC --- --- --- */
 
 
 /* --- --- --- EVENT HANDLERS --- --- --- */
-
-
-
 
 //when Name Submit button clicked
 
@@ -382,17 +359,7 @@ $(document).on('click', '.rps-selector', function(event){
 
 	checkIfGuessed();
 
-	// if both player choices are set,
-
-		// do comparison
-
-		// update 'last selected' in db for both
-
-		// update W/L in db
-
-		// increment rounds in db
-
-	});
+});
 
 
 //chat submit button
@@ -409,9 +376,6 @@ $(document).on('click', '#chat-submit', function(event){
 	database.ref('chat-input/current').set(chatInput);
 
 });
-
-
-
 
 
 // draws playerNames to screen
@@ -507,9 +471,3 @@ database.ref('chat-input').on("child_changed", function(snapshot){
 		$('#chat-box').prepend('<p>' +snapshot.val() +'</p>');
 	// }
 });
-
-
-
-/* --- --- --- PSEUDO / NOTES
-
-*/
