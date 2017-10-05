@@ -8,6 +8,9 @@ var currentSelection = '';
 
 var playerNumber = null;
 
+var playerOneGuess = '';
+var playerTwoGuess = '';
+
 var config = {
 	apiKey: "AIzaSyAFv-QDxJ7R061XotHbP0yWhvKdo5dkukU",
 	authDomain: "rps-multiplayer-db.firebaseapp.com",
@@ -43,6 +46,8 @@ function drawScreen(){
 
 		$('#join-panel').hide();
 
+		console.log('RPS redraw')
+
 		if(playerNumber === 1){
 
 			$(".p1-button").css("opacity", 1);
@@ -69,18 +74,67 @@ function drawScreen(){
 
 			$('#game-results').text(snapshot.val().result)
 
-			// if (playerNumber = 1){
+			if (playerNumber === 1){
 
-			// 	var opponentGuess = snapshot.val().playerDbOne.guess;
-			// 	console.log('logic');
+				switch( playerTwoGuess){
 
-			// }
+					case 'rock':
+						
+						$('#p2-select-rock').addClass('btn-danger');
+
+						break;
+
+					case 'paper':
+						
+						$('#p2-select-paper').addClass('btn-danger');
+
+						break;
+
+					case 'scissors':
+						
+						$('#p2-select-scissors').addClass('btn-danger');
+						
+						break;
+				}
+
+			}
+
+			if (playerNumber === 2){
+
+				switch( playerOneGuess){
+
+					case 'rock':
+						
+						$('#p1-select-rock').addClass('btn-danger');
+
+						break;
+
+					case 'paper':
+						
+						$('#p1-select-paper').addClass('btn-danger');
+
+						break;
+
+					case 'scissors':
+						
+						$('#p1-select-scissors').addClass('btn-danger');
+						
+						break;
+				}
+
+
+			}			
 
 		});
 
 		timerInterval = setTimeout(function(){
 
 			$('#game-results').text('');
+
+			$('.p1-button').removeClass('btn-danger');
+			$('.p2-button').removeClass('btn-danger');
+				
+			database.ref('game-round').set(1);
 
 		}, 3000 );
 
@@ -97,7 +151,7 @@ function drawScreen(){
 		// gameState = "rpsSelect";
 
 
-		database.ref('game-round').set(1);
+		
 
 	}
 
@@ -142,14 +196,14 @@ function checkIfGuessed(){
 function compareGuesses(){
 
 	database.ref().once("value", function(snapshot){
-		var playerOneGuess = snapshot.child('playerDbOne/guess').val();
-		var playerTwoGuess = snapshot.child('playerDbTwo/guess').val();
+		playerOneGuess = snapshot.child('playerDbOne/guess').val();
+		playerTwoGuess = snapshot.child('playerDbTwo/guess').val();
 		var bothGuesses = playerOneGuess + playerTwoGuess;
 
 		console.log(bothGuesses);
 
 		if( playerOneGuess === playerTwoGuess){
-			database.ref('result').set('tie');
+			database.ref('result').set('Tie!');
 
 			if(playerNumber === 1){
 				database.ref('playerDbOne/guess').set(null);		
@@ -163,7 +217,7 @@ function compareGuesses(){
 
 		else if ( bothGuesses === 'rockscissors' || bothGuesses === 'paperrock' || bothGuesses === 'scissorspaper'){
 			console.log('Player One Wins')
-			database.ref('result').set('player1wins');
+			database.ref('result').set('Player 1 Wins!');
 
 			if(playerNumber === 1){
 				database.ref('playerDbOne/guess').set(null);
@@ -178,7 +232,7 @@ function compareGuesses(){
 		
 		else{
 			console.log('Player Two Wins');
-			database.ref('result').set('player2wins');
+			database.ref('result').set('Player 2 Wins!');
 
 			if(playerNumber === 1){
 				database.ref('playerDbOne/guess').set(null);
@@ -367,7 +421,6 @@ database.ref().on("child_added", function(snapshot) {
 	if (snapshot.val().player === 1){
 		$('#player-one-name').text(snapshot.val().name)
 	}
-
 
 	if (snapshot.val().player === 2){
 		$('#player-two-name').text(snapshot.val().name)
